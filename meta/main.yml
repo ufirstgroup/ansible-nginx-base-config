@@ -6,14 +6,14 @@ galaxy_info:
   company: UFirstGroup
 
   license: MIT
-  # min_ansible_version: 1.4
+  min_ansible_version: 1.4
 
-  # platforms:
-  # - name: Ubuntu
-  #  versions:
-  #  - trusty
-  #  - utopic
-  #  - vivid
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+    - utopic
+    - vivid
 
   categories:
   - web
