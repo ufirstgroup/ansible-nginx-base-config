@@ -1,8 +1,8 @@
 # DO NOT EDIT - MAINTAINED BY ANSIBLE
 # https://github.com/ufirstgroup/ansible-nginx-base-config
 
+# $log_context must be defined when including this file
+# e.g. set $log_context 'main';
+
 include {{ nginx_base_config_folder }}/request-id.conf;
-
-set $log_context '?';
-
 access_log /var/log/nginx/access.json.log server_json;
