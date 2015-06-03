@@ -2,8 +2,8 @@
 galaxy_info:
   description: nginx base config
 
-  # author: Jean-Luc Geering
-  # company: UFirstGroup
+  author: Jean-Luc Geering
+  company: UFirstGroup
 
   license: MIT
   # min_ansible_version: 1.4
