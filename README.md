@@ -16,21 +16,20 @@ Ubuntu >= 14.04
 Dependencies
 -----------
 
-Ubuntu >= 14.04
+none
 
 Installation
 ----------
 
     ansible-galaxy install jlgeering.nginx-base-config
 
-example playbook:
+Example Playbook
+----------------
 
     ---
     - hosts: all
-      vars:
-        nginx_base_config_cleanup: false
       roles:
-        - jlgeering.nginx-base-config
+        - { role: jlgeering.nginx-base-config, nginx_base_config_cleanup: false }
 
 License
 ------
