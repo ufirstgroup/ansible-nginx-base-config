@@ -3,4 +3,6 @@
 
 include {{ nginx_base_config_folder }}/request-id.conf;
 
+set $log_context '?';
+
 access_log /var/log/nginx/access.json.log server_json;

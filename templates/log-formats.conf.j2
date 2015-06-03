@@ -8,11 +8,11 @@ log_format timing '$remote_addr [$time_iso8601] "$http_host" '
                   '"$request" "$http_referer" '
                   'agent "$http_user_agent"';
 
-# we cannot define the $request_id globally (in http{})
+# we cannot define variabls globally (in http{})
 log_format http_json '{ '
       '"timestamp": "$time_iso8601", '
-      '"request_id": "?", '
-      '"context": "$context", '
+      '"request_id": "", '
+      '"context": "", '
       '"message": "$request", '
       '"http_status": "$status", '
       '"scheme": "$scheme", '
@@ -28,7 +28,7 @@ log_format http_json '{ '
 log_format server_json '{ '
       '"timestamp": "$time_iso8601", '
       '"request_id": "$request_id", '
-      '"context": "$context", '
+      '"context": "$log_context", '
       '"message": "$request", '
       '"http_status": "$status", '
       '"scheme": "$scheme", '
