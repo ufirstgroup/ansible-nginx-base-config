@@ -1,17 +1,22 @@
 ---
 galaxy_info:
-  author: Jean-Luc Geering
   description: install nginx and provide some default config files
+
+  author: "Jean-Luc Geering"
   company: UFirstGroup
+
   license: MIT
   min_ansible_version: 1.4
+
   platforms:
   - name: Ubuntu
    versions:
    - trusty
    - utopic
    - vivid
+
   categories:
   - web
+
 dependencies: []
 
