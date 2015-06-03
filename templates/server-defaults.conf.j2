@@ -2,6 +2,5 @@
 # https://github.com/ufirstgroup/ansible-nginx-base-config
 
 include {{ nginx_base_config_folder }}/request-id.conf;
-include {{ nginx_base_config_folder }}/log-formats.conf;
 
-access_log /var/log/nginx/access.json.log http_json;
+access_log /var/log/nginx/access.json.log server_json;
