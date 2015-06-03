@@ -41,9 +41,11 @@
   notify: check config then restart nginx
   with_items:
   - nginx.conf
+  - access-logs.conf
+  - fastcgi.conf
+  - http-defaults.conf
   - log-formats.conf
   - request-id.conf
-  - fastcgi.conf
   tags:
   - nginx
   - security
