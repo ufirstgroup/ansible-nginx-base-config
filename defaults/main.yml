@@ -1,0 +1,9 @@
+---
+
+# all files will be put into that folder
+# to be included / used in regular config files
+nginx_base_config_folder: /etc/nginx/base-config
+
+# remove some config file provided by the package
+# like fastcgi.conf / fastcgi_params
+nginx_base_config_cleanup: true

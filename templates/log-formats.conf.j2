@@ -1,0 +1,25 @@
+# DO NOT EDIT - MAINTAINED BY ANSIBLE
+# https://github.com/ufirstgroup/ansible-nginx-base-config
+
+log_format timing '$remote_addr [$time_iso8601] "$http_host" '
+                  'status $status '
+                  'request $request_time '
+                  'upstream $upstream_response_time '
+                  '"$request" "$http_referer" '
+                  'agent "$http_user_agent"';
+
+log_format json '{ "@timestamp": "$time_iso8601", '
+                  '"@version\": \"1\", '
+                  '"request_id": "$request_id", '
+                  '"context": "$context", '
+                  '"message": "$request", '
+                  '"http_status": "$status", '
+                  '"scheme": "$scheme", '
+                  '"host": "$host", '
+                  '"remote_addr": "$remote_addr", '
+                  '"body_bytes_sent": "$body_bytes_sent", '
+                  '"time": "$request_time", '
+                  '"upstream": "$upstream_response_time", '
+                  '"method": "$request_method", '
+                  '"referrer": "$http_referer", '
+                  '"user_agent": "$http_user_agent" }';

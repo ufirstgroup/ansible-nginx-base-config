@@ -1,0 +1,62 @@
+---
+
+# using NGINX mainline
+# see http://nginx.com/blog/nginx-1-6-1-7-released/
+# and https://launchpad.net/~nginx/+archive/ubuntu/development
+
+- name: add PPA repository for mainline branch
+  apt_repository: repo='ppa:nginx/development'
+  tags: nginx
+
+- name: remove PPA repository for stable
+  apt_repository: repo='ppa:nginx/stable' state=absent
+  tags: nginx
+
+- name: install packages
+  apt: name={{ item }} state=latest
+  with_items:
+  - nginx-extras
+  - geoip-database
+  tags:
+  - nginx
+  - security
+
+- name: create nginx_base_config_folder folder
+  file: path={{ nginx_base_config_folder }} state=directory owner=root group=root mode=755
+  tags:
+  - nginx
+
+# see https://wiki.mozilla.org/Security/Server_Side_TLS
+# used in ssl config in {{ nginx_base_config_folder }}/nginx.conf
+- name: generate a stronger DHE parameter
+  command: openssl dhparam -out {{ nginx_base_config_folder }}/dhparam_4096.pem 4096 creates={{ nginx_base_config_folder }}/dhparam_4096.pem
+  sudo: yes
+  tags:
+  - nginx
+  - security
+
+- name: config files
+  template: src={{ item }}.j2 dest={{ nginx_base_config_folder }}/{{ item }} owner=root group=root mode=644
+  sudo: yes
+  notify: check config then restart nginx
+  with_items:
+  - nginx.conf
+  - log-formats.conf
+  - request-id.conf
+  - fastcgi.conf
+  tags:
+  - nginx
+  - security
+
+- name: cleanup config files
+  file: path={{ item }} state=absent
+  notify: check config then restart nginx
+  when: nginx_base_config_cleanup
+  with_items:
+  - /etc/nginx/fastcgi.conf
+  - /etc/nginx/fastcgi_params
+  tags: nginx
+
+- name: nginx service
+  service: name=nginx state=started enabled=yes
+  tags: nginx
