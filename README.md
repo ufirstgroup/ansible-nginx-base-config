@@ -29,7 +29,7 @@ Example Playbook
     ---
     - hosts: all
       roles:
-        - { role: jlgeering.nginx-base-config, nginx_base_config_cleanup: false }
+        - { role: jlgeering.nginx-base-config, nginx_base_config_replace: true }
 
 License
 ------

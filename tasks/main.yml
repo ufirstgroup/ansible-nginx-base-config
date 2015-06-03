@@ -13,7 +13,7 @@
   tags: nginx
 
 - name: install packages
-  apt: name={{ item }} state=latest
+  apt: name={{ item }} state=latest update_cache=yes
   with_items:
   - nginx-extras
   - geoip-database
@@ -47,6 +47,14 @@
   tags:
   - nginx
   - security
+
+- name: replace main config file
+  copy: dest=/etc/nginx/nginx.conf content="include {{ nginx_base_config_folder }}/nginx.conf;\n" owner=root group=root mode=644
+  sudo: yes
+  notify: check config then restart nginx
+  when: nginx_base_config_replace
+  tags:
+  - nginx
 
 - name: cleanup config files
   file: path={{ item }} state=absent
