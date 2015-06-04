@@ -11,6 +11,15 @@ set_by_lua $request_id '
         end)
     end
     local request_id = random_id()
+    # add header to request
+    ngx.req.set_header("X-Request-ID", request_id)
     return request_id
 ';
+
+# adding a header to a request without lua is a bit more complicated:
+# proxy_set_header X-Request-ID $request_id;
+# fastcgi_param HTTP_X_REQUEST_ID $request_id;
+# ... maybe more
+
+# add header to response
 add_header X-Request-ID $request_id always;
