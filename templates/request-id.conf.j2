@@ -11,7 +11,7 @@ set_by_lua $request_id '
         end)
     end
     local request_id = random_id()
-    # add header to request
+    -- add header to request (this is a lua comment ...)
     ngx.req.set_header("X-Request-ID", request_id)
     return request_id
 ';
