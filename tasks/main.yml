@@ -17,6 +17,7 @@
   with_items:
   - nginx-extras
   - geoip-database
+  - geoip-database-contrib
   tags:
   - nginx
   - security
