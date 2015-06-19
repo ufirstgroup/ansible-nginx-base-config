@@ -30,7 +30,7 @@
 # see https://wiki.mozilla.org/Security/Server_Side_TLS
 # used in ssl config in {{ nginx_base_config_folder }}/nginx.conf
 - name: generate a stronger DHE parameter
-  command: openssl dhparam -out {{ nginx_base_config_folder }}/dhparam_4096.pem 4096 creates={{ nginx_base_config_folder }}/dhparam_4096.pem
+  command: openssl dhparam -out {{ nginx_base_config_folder }}/dhparam_{{ nginx_dhparam_size }}.pem {{ nginx_dhparam_size }} creates={{ nginx_base_config_folder }}/dhparam_{{ nginx_dhparam_size }}.pem
   sudo: yes
   tags:
   - nginx

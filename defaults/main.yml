@@ -10,3 +10,7 @@ nginx_base_config_replace: false
 # remove some config file provided by the package
 # like fastcgi.conf / fastcgi_params
 nginx_base_config_cleanup: false
+
+# pick a big (strong) dhparam size per default
+# see https://wiki.mozilla.org/Security/Server_Side_TLS
+nginx_dhparam_size: 4096
