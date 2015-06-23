@@ -16,8 +16,6 @@
   apt: name={{ item }} state=latest update_cache=yes
   with_items:
   - nginx-extras
-  - geoip-database
-  - geoip-database-contrib
   tags:
   - nginx
   - security
