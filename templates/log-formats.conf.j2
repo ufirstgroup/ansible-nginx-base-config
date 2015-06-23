@@ -40,3 +40,21 @@ log_format server_json '{ '
       '"method": "$request_method", '
       '"referrer": "$http_referer", '
       '"user_agent": "$http_user_agent" }';
+
+# see https://support.cloudflare.com/hc/en-us/articles/200169746-Adding-the-CF-RAY-header-to-your-logs
+log_format cloudflare_json '{ '
+      '"timestamp": "$time_iso8601", '
+      '"request_id": "$request_id", '
+      '"ray_id": "$http_cf_ray", '
+      '"context": "$log_context", '
+      '"message": "$request", '
+      '"http_status": "$status", '
+      '"scheme": "$scheme", '
+      '"host": "$host", '
+      '"remote_addr": "$remote_addr", '
+      '"body_bytes_sent": "$body_bytes_sent", '
+      '"time": "$request_time", '
+      '"upstream": "$upstream_response_time", '
+      '"method": "$request_method", '
+      '"referrer": "$http_referer", '
+      '"user_agent": "$http_user_agent" }';
