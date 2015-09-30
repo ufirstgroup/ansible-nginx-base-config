@@ -1,6 +1,24 @@
 # DO NOT EDIT - MAINTAINED BY ANSIBLE
 # https://github.com/ufirstgroup/ansible-nginx-base-config
 
+
+# we cannot use "set $variable ..." in http context
+# => set a default with map
+map $host $request_id {
+	default '';
+}
+map $host $log_context {
+	default '';
+}
+
+# set seed for math.random()
+# common seed for all workers => append worker pid for uniqueness
+init_by_lua '
+    math = require "math"
+    math.randomseed( os.time() )
+    math.random(); math.random(); math.random()
+';
+
 include {{ nginx_base_config_folder }}/log-formats.conf;
 
-access_log /var/log/nginx/access.json.log http_json;
+access_log /var/log/nginx/access.json.log access_json;
