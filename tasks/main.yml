@@ -30,6 +30,7 @@
 - name: generate a stronger DHE parameter
   command: openssl dhparam -out {{ nginx_base_config_folder }}/dhparam_{{ nginx_dhparam_size }}.pem {{ nginx_dhparam_size }} creates={{ nginx_base_config_folder }}/dhparam_{{ nginx_dhparam_size }}.pem
   sudo: yes
+  when: nginx_dhparam_size > 0
   tags:
   - nginx
   - security
