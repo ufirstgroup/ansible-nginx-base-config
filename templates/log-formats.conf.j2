@@ -22,7 +22,8 @@ log_format access_json '{ '
       '"upstream": "$upstream_response_time", '
       '"method": "$request_method", '
       '"referrer": "$http_referer", '
-      '"user_agent": "$http_user_agent" }';
+      '"user_agent": "$http_user_agent", '
+      '"msec": "$msec" }';
 
 # see https://support.cloudflare.com/hc/en-us/articles/200169746-Adding-the-CF-RAY-header-to-your-logs
 log_format cloudflare_json '{ '
@@ -40,4 +41,5 @@ log_format cloudflare_json '{ '
       '"upstream": "$upstream_response_time", '
       '"method": "$request_method", '
       '"referrer": "$http_referer", '
-      '"user_agent": "$http_user_agent" }';
+      '"user_agent": "$http_user_agent", '
+      '"msec": "$msec" }';
