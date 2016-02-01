@@ -1,9 +1,7 @@
 ---
 - name: check config then restart nginx
   command: nginx -t
-  sudo: yes
   notify: restart nginx
 
 - name: restart nginx
-  sudo: yes
   service: name=nginx state=restarted

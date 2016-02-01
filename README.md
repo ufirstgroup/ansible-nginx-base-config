@@ -11,7 +11,7 @@ see defaults/main.yml
 Requirements
 -----------
 
-Ubuntu >= 14.04
+Ubuntu >= 14.04, must be run as root
 
 Dependencies
 -----------
@@ -28,6 +28,7 @@ Example Playbook
 
     ---
     - hosts: all
+      become: yes
       roles:
         - { role: jlgeering.nginx-base-config, nginx_base_config_replace: true }
 
