@@ -4,4 +4,5 @@
 # $log_context must be defined when including this file
 # e.g. set $log_context 'main';
 
-include {{ nginx_base_config_folder }}/request-id.conf;
+# Request id is now provided by nginx per default.
+# include {{ nginx_base_config_folder }}/request-id.conf;
