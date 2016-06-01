@@ -4,9 +4,11 @@
 
 # we cannot use "set $variable ..." in http context
 # => set a default with map
-map $host $request_id {
-	default '';
-}
+# request_id now provided by nginx
+# map $host $request_id {
+# 	default '';
+# }
+
 map $host $log_context {
 	default '';
 }
