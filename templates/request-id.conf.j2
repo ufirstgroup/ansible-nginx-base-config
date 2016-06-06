@@ -4,11 +4,31 @@
 # Request id is now provided by nginx per default.
 
 set_by_lua_block $ufg_request_id {
+
+    -- this is a lua comment ...
+
+    local function random_id()
+        local charset = "0123456789abcdefghijklmnopqrstuvwxyz"
+        local range = charset:len()
+        local part_1 = {}
+        local part_2 = {}
+        for loop = 1,8 do
+            part_1[loop] = string.char(charset:byte(math.random(1, range)))
+            part_2[loop] = string.char(charset:byte(math.random(1, range)))
+        end
+        return ngx.worker.pid() .. "-" .. table.concat(part_1) .. "-" .. table.concat(part_2)
+    end
     local request_id = ngx.var.request_id
-    -- add header to request (this is a lua comment ...)
+
+    -- compatibility with older version of nginx (< 1.11)
+    if not request_id then
+        request_id = random_id()
+    end
+
+    -- add header to request
     ngx.req.set_header("X-Request-ID", request_id)
     return request_id
-};
+}
 
 # adding a header to a request without lua is a bit more complicated:
 # proxy_set_header X-Request-ID $request_id;
@@ -16,4 +36,4 @@ set_by_lua_block $ufg_request_id {
 # ... maybe more
 
 # add header to response
-add_header X-Request-ID $request_id always;
+add_header X-Request-ID $ufg_request_id always;

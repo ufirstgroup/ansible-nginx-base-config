@@ -4,10 +4,10 @@
 
 # we cannot use "set $variable ..." in http context
 # => set a default with map
-# request_id now provided by nginx
-# map $host $request_id {
-# 	default '';
-# }
+# $request_id now provided by nginx
+map $host $ufg_request_id {
+	default '';
+}
 
 map $host $log_context {
 	default '';
@@ -16,9 +16,9 @@ map $host $log_context {
 # set seed for math.random()
 # common seed for all workers => append worker pid for uniqueness
 init_by_lua '
-    math = require "math"
-    math.randomseed( os.time() )
-    math.random(); math.random(); math.random()
+	math = require "math"
+	math.randomseed( os.time() )
+	math.random(); math.random(); math.random()
 ';
 
 include {{ nginx_base_config_folder }}/log-formats.conf;
