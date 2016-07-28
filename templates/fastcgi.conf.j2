@@ -23,6 +23,10 @@ fastcgi_param  SERVER_ADDR        $server_addr;
 fastcgi_param  SERVER_PORT        $server_port;
 fastcgi_param  SERVER_NAME        $server_name;
 
+# https://httpoxy.org/
+# https://www.nginx.com/blog/mitigating-the-httpoxy-vulnerability-with-nginx/
+fastcgi_param HTTP_PROXY "";
+
 # https://docs.newrelic.com/docs/apm/other-features/request-queueing/request-queue-server-configuration-examples#nginx
 fastcgi_param HTTP_X_REQUEST_START "t=${msec}";
 
