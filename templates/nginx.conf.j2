@@ -2,6 +2,7 @@
 # https://github.com/ufirstgroup/ansible-nginx-base-config
 
 # see https://www.nginx.com/blog/dynamic-modules-nginx-1-9-11/
+include /etc/nginx/modules-enabled/*.conf;
 include /etc/nginx/conf.d/*.load;
 
 # based on default version from nginx 1.7.12 mainline ppa package
